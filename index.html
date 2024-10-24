@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plural Nouns Exercise</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 20px;
+        }
+        #logo {
+            width: 150px; /* Adjust the logo size as needed */
+            margin-bottom: 20px;
+        }
+        .word {
+            font-size: 24px;
+            margin: 20px 0;
+        }
+        .noun {
+            color: blue;
+            font-weight: bold;
+        }
+        .feedback {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .next {
+            margin-top: 30px;
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: none;
+        }
+        .next:hover {
+            background-color: #388e3c;
+        }
+        .more-lessons {
+            margin-top: 40px;
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .more-lessons:hover {
+            background-color: #388e3c;
+        }
+    </style>
+</head>
+<body>
+
+<img id="logo" src="https://i.imgur.com/mwpTHJj.png" alt="Logo">
+<h1>Plural Nouns Exercise</h1>
+
+<div id="exercise-section">
+    <div class="word">Noun: <span id="noun" class="noun"></span></div>
+    <input type="text" id="answer" placeholder="Type the plural form" />
+    <button id="submit">Submit</button>
+    <div class="feedback" id="feedback"></div>
+</div>
+
+<a href="#" class="next" id="next-button">Next Exercise</a>
+
+<!-- More Lessons Button -->
+<a href="https://sites.google.com/view/grades-2/home" class="more-lessons">More Lessons</a>
+
+<script>
+    const singularNouns = [
+        "cat", "dog", "box", "baby", "car", "church", "party", "city", "berry", "mouse",
+        "leaf", "potato", "tomato", "fox", "class", "hero", "church", "city", "party", "wolf"
+    ];
+
+    const pluralNouns = {
+        "cat": "cats",
+        "dog": "dogs",
+        "box": "boxes",
+        "baby": "babies",
+        "car": "cars",
+        "church": "churches",
+        "party": "parties",
+        "city": "cities",
+        "berry": "berries",
+        "mouse": "mice",
+        "leaf": "leaves",
+        "potato": "potatoes",
+        "tomato": "tomatoes",
+        "fox": "foxes",
+        "class": "classes",
+        "hero": "heroes",
+        "church": "churches",
+        "city": "cities",
+        "party": "parties",
+        "wolf": "wolves"
+    };
+
+    let currentExercise = 0;
+
+    const nounElement = document.getElementById('noun');
+    const answerInput = document.getElementById('answer');
+    const feedbackElement = document.getElementById('feedback');
+    const nextButton = document.getElementById('next-button');
+
+    function loadExercise() {
+        const randomIndex = Math.floor(Math.random() * singularNouns.length);
+        const noun = singularNouns[randomIndex];
+        nounElement.textContent = noun;
+        answerInput.value = '';
+        feedbackElement.textContent = '';
+    }
+
+    document.getElementById('submit').addEventListener('click', () => {
+        const answer = answerInput.value.trim().toLowerCase();
+        const correctAnswer = pluralNouns[nounElement.textContent];
+
+        if (answer === correctAnswer) {
+            feedbackElement.textContent = "Good job!";
+        } else {
+            feedbackElement.textContent = `Incorrect! The correct plural is "${correctAnswer}".`;
+        }
+
+        nextButton.style.display = 'block';
+    });
+
+    nextButton.addEventListener('click', () => {
+        currentExercise++;
+        loadExercise();
+        nextButton.style.display = 'none';
+    });
+
+    loadExercise();
+</script>
+
+</body>
+</html>
